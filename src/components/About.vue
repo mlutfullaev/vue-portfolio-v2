@@ -1,6 +1,6 @@
 <template>
-  <section class="container" id="about">
-    <div class="about-inner">
+  <section id="about">
+    <div class="container about-inner">
       <div class="about-content">
         <p class="section-name">/about</p>
         <h2 class="title">This is now and past is passed</h2>
@@ -13,8 +13,7 @@
 
 <style lang="scss">
 #about {
-  padding-top: 100px;
-  padding-bottom: 100px;
+  background: #f1f1f1;
 
   .about-inner {
     display: flex;

@@ -13,10 +13,16 @@
 </template>
 
 <style lang="scss">
+@import '@/assets/variables';
+
 header {
   padding: 30px;
   background: #FFF;
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
 
   .header-inner {
     display: flex;
@@ -41,7 +47,7 @@ header {
       }
 
       a::before {
-        background-color: #444;
+        background-color: $second-color;
         height: 2px;
         bottom: 0;
         transform-origin: 100% 50%;
