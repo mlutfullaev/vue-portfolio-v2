@@ -5,7 +5,7 @@
       <h3 class="title">{{ project.title }}</h3>
       <p class="text">{{ project.description }}</p>
       <div class="stack">
-        <p>Stack: </p><p v-for="(stack, idx) in project.stack" :key="stack">{{idx !== 0 ? ' | ' : ''}}{{stack}}</p>
+        <p>stack: </p><p v-for="(stack, idx) in project.stack" :key="stack">{{idx !== 0 ? ' | ' : ''}}{{stack}}</p>
       </div>
       <div class="links">
         <a target="_blank" :href="project.demo">
