@@ -47,6 +47,10 @@
       font-family: 'Montserrat', sans-serif;
       transition: .2s;
 
+      @media (max-width: 900px) {
+        font-size: 16px;
+        padding: 8px 25px;
+      }
       &.active {
         background: #333;
         color: #fff;

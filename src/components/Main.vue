@@ -46,14 +46,30 @@ main {
       border-radius: 50%;
       overflow: hidden;
       background-image: url("@/assets/img/1.jpg");
+
+      @media (max-width: 1280px) {
+        width: 200px;
+        height: 200px;
+        flex: 0 0 200px;
+      }
     }
 
     .main-text {
       width: calc(100% - 240px);
 
+      @media (max-width: 1280px) {
+        width: calc(100% - 200px);
+      }
       & > h1 {
         font-size: 64px;
         font-weight: 900;
+
+        @media (max-width: 1280px) {
+          font-size: 50px;
+        }
+        @media (max-width: 900px) {
+          font-size: 43px;
+        }
       }
 
       & > p {
@@ -62,6 +78,14 @@ main {
         font-size: 22px;
         color: #444;
         max-width: 500px;
+
+        @media (max-width: 1280px) {
+          font-size: 20px;
+          max-width: 400px;
+        }
+        @media (max-width: 900px) {
+          font-size: 18px;
+        }
       }
     }
   }

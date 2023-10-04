@@ -37,10 +37,24 @@ button {
   padding-left: 50px;
   padding-right: 50px;
   margin: 0 auto;
+
+  @media (max-width: 1280px) {
+    max-width: 850px;
+  }
+  @media (max-width: 900px) {
+    max-width: 740px;
+  }
 }
 .section-name {
   color: $second-color;
   font-size: 20px;
+
+  @media (max-width: 1280px) {
+    font-size: 18px;
+  }
+  @media (max-width: 900px) {
+    font-size: 16px;
+  }
 }
 .bg-img {
   background-position: center;
@@ -50,9 +64,23 @@ button {
 .title {
   font-size: 30px;
   font-weight: 700;
+
+  @media (max-width: 1280px) {
+    font-size: 26px;
+  }
+  @media (max-width: 900px) {
+    font-size: 23px;
+  }
 }
 .text {
   font-size: 17px;
   color: #444;
   font-family: 'Montserrat', sans-serif;
+
+  @media (max-width: 1280px) {
+    font-size: 16px;
+  }
+  @media (max-width: 900px) {
+    font-size: 16px;
+  }
 }

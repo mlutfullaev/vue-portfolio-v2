@@ -45,6 +45,14 @@
     border-radius: 20px 0 0 20px;
     width: 400px;
     height: 300px;
+
+    @media (max-width: 1280px) {
+      width: 340px;
+      height: auto;
+    }
+    @media (max-width: 900px) {
+      width: 300px;
+    }
   }
 
   .card-item {
@@ -52,9 +60,20 @@
     position: relative;
     width: calc(100% - 400px);
 
+    @media (max-width: 1280px) {
+      width: calc(100% - 340px);
+    }
+    @media (max-width: 900px) {
+      width: calc(100% - 300px);
+      padding: 20px 20px 45px;
+    }
     > h3 {
       font-family: 'Montserrat', sans-serif;
       padding-bottom: 25px;
+
+      @media (max-width: 1280px) {
+        padding-bottom: 10px;
+      }
     }
 
     > p {
@@ -65,11 +84,20 @@
       gap: 10px;
       padding-bottom: 20px;
 
+      @media (max-width: 900px) {
+        flex-wrap: wrap;
+      }
       p {
         font-size: 23px;
         font-weight: 600;
         &:first-child {
           color: $second-color;
+        }
+        @media (max-width: 1280px) {
+          font-size: 20px;
+        }
+        @media (max-width: 900px) {
+          font-size: 17px;
         }
       }
     }
@@ -91,8 +119,15 @@
         transition: .2s;
         color: #000;
 
+        @media (max-width: 900px) {
+          font-size: 14px;
+        }
         > svg {
           transition: .2s;
+          @media (max-width: 900px) {
+            width: 25px;
+            height: 20px;
+          }
         }
         .github path {
           transition: .2s;

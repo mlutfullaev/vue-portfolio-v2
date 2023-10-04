@@ -19,19 +19,36 @@
     display: flex;
     gap: 50px;
 
+    @media (max-width: 900px) {
+      gap: 25px;
+    }
     .about-content {
-      & > h2 {
+      width: calc(100% - 450px);
+
+      @media (max-width: 1280px) {
+        width: calc(100% - 380px);
+      }
+      @media (max-width: 900px) {
+        width: calc(100% - 325px);
       }
       .about-text {
         padding-top: 20px;
       }
     }
     .about-img {
-      flex: 0 0 450px;
       border-radius: 30px;
       width: 450px;
       height: 300px;
       background-image: url('@/assets/img/4.jpg');
+
+      @media (max-width: 1280px) {
+        width: 380px;
+        height: 250px;
+      }
+      @media (max-width: 900px) {
+        width: 300px;
+        height: 230px;
+      }
     }
   }
 }

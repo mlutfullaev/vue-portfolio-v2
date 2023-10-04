@@ -56,6 +56,9 @@
     align-items: center;
     padding: 40px 0;
 
+    @media (max-width: 900px) {
+      flex-wrap: wrap;
+    }
     .contacts-item {
       display: flex;
       gap: 10px;
