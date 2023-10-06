@@ -1,22 +1,29 @@
 <template>
   <header>
     <div class="container header-inner">
-      <a href="#main">m.lutfullaev</a>
+      <router-link :to="{path: '/', hash: '#main'}">m.lutfullaev</router-link>
       <nav>
-        <a href="#main" data-replace="main"><span>main</span></a>
-        <a href="#about" data-replace="about"><span>about</span></a>
-        <a href="#projects" data-replace="projects"><span>projects</span></a>
-        <a href="#contacts" data-replace="contacts"><span>contacts</span></a>
+        <router-link :to="{path: '/', hash: '#main'}" data-replace="main"><span>main</span></router-link>
+        <router-link :to="{path: '/', hash: '#about'}" data-replace="about"><span>about</span></router-link>
+        <router-link :to="{path: '/', hash: '#projects'}" data-replace="projects"><span>projects</span></router-link>
+        <router-link :to="{path: '/', hash: '#contacts'}" data-replace="contacts"><span>contacts</span></router-link>
       </nav>
     </div>
   </header>
+  <button @click="menuActive = !menuActive" :class="['burger-btn', {active: menuActive}]"><span></span></button>
+  <div :class="{menu: true, active: menuActive}">
+    <router-link @click="menuActive = false" :to="{path: '/', hash: '#main'}" >Main</router-link>
+    <router-link @click="menuActive = false" :to="{path: '/', hash: '#about'}" >About</router-link>
+    <router-link @click="menuActive = false" :to="{path: '/', hash: '#projects'}" >Projects</router-link>
+    <router-link @click="menuActive = false" :to="{path: '/', hash: '#contacts'}" >Contacts</router-link>
+  </div>
 </template>
 
 <style lang="scss">
 @import '@/assets/variables';
 
 header {
-  padding: 30px;
+  padding: 30px 0;
   background: #FFF;
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
   position: fixed;
@@ -37,55 +44,50 @@ header {
         overflow: hidden;
         position: relative;
         display: inline-block;
-      }
 
-      a::before,
-      a::after {
-        content: '';
-        position: absolute;
-        width: 100%;
-        left: 0;
-      }
+        &::before, &::after {
+          content: '';
+          position: absolute;
+          width: 100%;
+          left: 0;
+        }
+        &::before {
+          background-color: $second-color;
+          height: 2px;
+          bottom: 0;
+          transform-origin: 100% 50%;
+          transform: scaleX(0);
+          transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        &::after {
+          content: attr(data-replace);
+          height: 100%;
+          top: 0;
+          transform-origin: 100% 50%;
+          transform: translate3d(200%, 0, 0);
+          transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+          color: #444;
+        }
+        &:hover {
+          &::before {
+            transform-origin: 0 50%;
+            transform: scaleX(1);
+          }
+          &::after {
+            transform: translate3d(0, 0, 0);
+          }
+          span {
+             transform: translate3d(-200%, 0, 0);
+          }
+        }
+        span {
+          display: inline-block;
+          transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+        }
 
-      a::before {
-        background-color: $second-color;
-        height: 2px;
-        bottom: 0;
-        transform-origin: 100% 50%;
-        transform: scaleX(0);
-        transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
-      }
-
-      a::after {
-        content: attr(data-replace);
-        height: 100%;
-        top: 0;
-        transform-origin: 100% 50%;
-        transform: translate3d(200%, 0, 0);
-        transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
-        color: #444;
-      }
-
-      a:hover::before {
-        transform-origin: 0 50%;
-        transform: scaleX(1);
-      }
-
-      a:hover::after {
-        transform: translate3d(0, 0, 0);
-      }
-
-      a span {
-        display: inline-block;
-        transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
-      }
-
-      a:hover span {
-        transform: translate3d(-200%, 0, 0);
-      }
-
-      a {
-        vertical-align: top;
+        @media (max-width:500px) {
+          display: none;
+        }
       }
     }
 
@@ -98,4 +100,101 @@ header {
     }
   }
 }
+
+.burger-btn {
+  cursor: pointer;
+  padding: 12px 0;
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  z-index: 4;
+
+  @media (min-width: 501px) {
+    display: none;
+  }
+
+  span {
+    position: relative;
+    display: block;
+    width: 25px;
+    height: 4px;
+    background: #444;
+    transition: all .2s ease-in-out;
+    border-radius: 4px;
+
+    &:before, &:after {
+      position: absolute;
+      background: #444;
+      content: '';
+      left: 0;
+      width: 25px;
+      height: 4px;
+      border-radius: 4px;
+      transition: all .2s ease-in-out;
+    }
+
+    &:before {
+      top: -8px;
+    }
+
+    &:after {
+      top: 8px;
+    }
+  }
+
+  &.active {
+    span {
+      background: transparent;
+
+      &:before {
+        transform: rotate(45deg) translate(5px, 6px);
+      }
+
+      &:after {
+        transform: rotate(-45deg) translate(5px, -6px);
+      }
+    }
+  }
+}
+.menu {
+  right: -100%;
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  background: rgba(255, 255, 255, .9);
+  z-index: 3;
+  transition: .2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &.active {
+    right: 0;
+  }
+  > a {
+    padding: 20px 50px;
+    width: 100%;
+    color: #000;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    font-weight: 500;
+    background: #fff;
+    border-bottom: 2px solid #f1f1f1;
+  }
+}
 </style>
+
+<script>
+export default {
+  name: 'Header',
+  data: () => ({
+    menuActive: false
+  }),
+  watch: {
+    menuActive () {
+      document.querySelector('body').style.overflow = this.menuActive ? 'hidden' : 'visible'
+    }
+  }
+}
+</script>

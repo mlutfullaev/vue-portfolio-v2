@@ -1,5 +1,5 @@
 <template>
-  <section id="about">
+  <section id="about" ref="about">
     <div class="container about-inner">
       <div class="about-content">
         <p class="section-name">/about</p>
@@ -22,6 +22,10 @@
     @media (max-width: 900px) {
       gap: 25px;
     }
+    @media (max-width: 660px) {
+      flex-direction: column-reverse;
+      align-items: center;
+    }
     .about-content {
       width: calc(100% - 450px);
 
@@ -30,6 +34,9 @@
       }
       @media (max-width: 900px) {
         width: calc(100% - 325px);
+      }
+      @media (max-width: 660px) {
+        width: 100%;
       }
       .about-text {
         padding-top: 20px;
@@ -49,9 +56,23 @@
         width: 300px;
         height: 230px;
       }
+      @media (max-width: 660px) {
+        width: 350px;
+        height: 250px;
+      }
+      @media (max-width: 400px) {
+        width: 100%;
+        height: 250px;
+      }
+      @media (max-width: 350px) {
+        width: 100%;
+        height: 200px;
+      }
+      @media (max-width: 300px) {
+        width: 100%;
+        height: 170px;
+      }
     }
   }
 }
 </style>
-<script setup>
-</script>
