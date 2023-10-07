@@ -1,13 +1,55 @@
 <template>
   <header>
     <div class="container header-inner">
-      <router-link :to="{path: '/', hash: '#main'}">m.lutfullaev</router-link>
-      <nav>
-        <router-link :to="{path: '/', hash: '#main'}" data-replace="main"><span>main</span></router-link>
-        <router-link :to="{path: '/', hash: '#about'}" data-replace="about"><span>about</span></router-link>
-        <router-link :to="{path: '/', hash: '#projects'}" data-replace="projects"><span>projects</span></router-link>
-        <router-link :to="{path: '/', hash: '#contacts'}" data-replace="contacts"><span>contacts</span></router-link>
-      </nav>
+      <router-link
+        :to="{path: '/', hash: '#main'}"
+        v-motion
+        :initial="{ opacity: 0, x: -20, }"
+        :enter="{ opacity: 1, x: 0, transition: {duration: 300, delay: 500}}"
+      >m.lutfullaev</router-link>
+      <ul class="nav">
+        <li
+          v-motion
+          :initial="{ opacity: 0, y: -30 }"
+          :enter="{ opacity: 1, y: 0, transition: {duration: 300}}">
+          <router-link
+            :to="{path: '/', hash: '#main'}"
+            data-replace="main"
+          >
+            <span>main</span>
+          </router-link>
+        </li>
+        <li
+          v-motion
+          :initial="{ opacity: 0, y: -30 }"
+          :enter="{ opacity: 1, y: 0, transition: {duration: 300, delay: 100}}">
+          <router-link
+            :to="{path: '/', hash: '#about'}"
+            data-replace="about">
+            <span>about</span>
+          </router-link>
+        </li>
+        <li
+          v-motion
+          :initial="{ opacity: 0, y: -30 }"
+          :enter="{ opacity: 1, y: 0, transition: {duration: 300, delay: 200}}">
+          <router-link
+            :to="{path: '/', hash: '#projects'}"
+            data-replace="projects">
+            <span>projects</span>
+          </router-link>
+        </li>
+        <li
+          v-motion
+          :initial="{ opacity: 0, y: -30 }"
+          :enter="{ opacity: 1, y: 0, transition: {duration: 300, delay: 300}}">
+          <router-link
+            :to="{path: '/', hash: '#contacts'}"
+            data-replace="contacts">
+            <span>contacts</span>
+          </router-link>
+        </li>
+      </ul>
     </div>
   </header>
   <button @click="menuActive = !menuActive" :class="['burger-btn', {active: menuActive}]"><span></span></button>
@@ -37,9 +79,12 @@ header {
     justify-content: space-between;
     align-items: center;
 
-    nav {
+    .nav {
+      list-style-type: none;
+      display: flex;
+      gap: 15px;
+
       a {
-        margin-left: 15px;
         padding-bottom: 2px;
         overflow: hidden;
         position: relative;

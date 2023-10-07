@@ -2,11 +2,29 @@
   <section id="about" ref="about">
     <div class="container about-inner">
       <div class="about-content">
-        <p class="section-name">/about</p>
-        <h2 class="title">This is now and past is passed</h2>
-        <p class="text about-text">Фронтенд-разработчик с опытом 3 года. Начал интересоваться программированием с 12 лет. Самоучка, всегда ищу новые знания. Люблю копаться на чем не знаю) Готов присоединиться к команде и внести свой вклад в современные веб-приложения. Работал с React.js 2+ года, Html/Css/Js 1+ года.</p>
+        <p
+          v-motion
+          :initial="{ opacity: 0, x: -50 }"
+          :visible="{ opacity: 1, x: 0, transition: {duration: 400, delay: 100}}"
+          class="section-name"
+        >/about</p>
+        <h2
+          v-motion
+          :initial="{ opacity: 0, y: -40 }"
+          :visible="{ opacity: 1, y: 0, transition: {duration: 400, delay: 400}}"
+          class="title"
+        >This is now and past is passed</h2>
+        <p
+          v-motion
+          :initial="{ opacity: 0, x: -40 }"
+          :visible="{ opacity: 1, x: 0, transition: {duration: 400, delay: 500}}"
+          class="text about-text">Фронтенд-разработчик с опытом 3 года. Начал интересоваться программированием с 12 лет. Самоучка, всегда ищу новые знания. Люблю копаться на чем не знаю) Готов присоединиться к команде и внести свой вклад в современные веб-приложения. Работал с React.js 2+ года, Html/Css/Js 1+ года.</p>
       </div>
-      <div class="bg-img about-img"></div>
+      <div
+        v-motion
+        :initial="{ opacity: 0, scale: .9, x: 30, backgroundSize: '100%',}"
+        :visible="{ opacity: 1, scale: 1, x: 0, backgroundSize: '110%', transition: {duration: 600, delay: 400}}"
+        class="bg-img about-img"></div>
     </div>
   </section>
 </template>
@@ -76,3 +94,5 @@
   }
 }
 </style>
+<script setup>
+</script>

@@ -1,13 +1,42 @@
 <template>
-  <div class="project-card">
-    <div class="bg-img project-img" :style='{backgroundImage: `url("${project.img}")`}'></div>
+  <div
+    class="project-card"
+    v-motion
+    :initial="{ x: -60, opacity: 0, scale: .9 }"
+    :visible="{ x: 0, opacity: 1, scale: 1, transition: {duration: 250, delay: 100}}">
+    <div
+      v-motion
+      :initial="{ backgroundSize: '120%', opacity: .3 }"
+      :visible="{ backgroundSize: '100%', opacity: 1, transition: {duration: 300, delay: 300}}"
+      class="bg-img project-img"
+      :style='{backgroundImage: `url("${project.img}")`}'
+    ></div>
     <div class="card-item">
-      <h3 class="title">{{ project.title }}</h3>
-      <p class="text">{{ project.description }}</p>
-      <div class="stack">
-        <p>stack: </p><p v-for="(stack, idx) in project.stack" :key="stack">{{idx !== 0 ? ' | ' : ''}}{{stack}}</p>
+      <h3
+        class="title"
+        v-motion
+        :initial="{ x: -50, opacity: 0,}"
+        :visible="{ x: 0, opacity: 1, transition: {duration: 350, delay: 250}}"
+      >{{ project.title }}</h3>
+      <p
+        class="text"
+        v-motion
+        :initial="{ y: -50, opacity: 0,}"
+        :visible="{ y: 0, opacity: 1, transition: {duration: 300, delay: 350}}"
+      >{{ project.description }}</p>
+      <div
+        class="stack"
+        v-motion
+        :initial="{ y: -50, opacity: 0,}"
+        :visible="{ y: 0, opacity: 1, transition: {duration: 300, delay: 400}}">
+        <p>stack: </p>
+        <p v-for="(stack, idx) in project.stack" :key="stack">{{ idx !== 0 ? ' | ' : '' }}{{ stack }}</p>
       </div>
-      <div class="links">
+      <div
+        class="links"
+        v-motion
+        :initial="{ y: -50, opacity: 0,}"
+        :visible="{ y: 0, opacity: 1, transition: {duration: 300, delay: 450}}">
         <a target="_blank" :href="project.demo">
           Live Demo
           <svg class="demo" xmlns="http://www.w3.org/2000/svg" height="28" viewBox="0 -960 960 960" width="28">
@@ -44,6 +73,7 @@
   @media (max-width: 660px) {
     flex-direction: column;
   }
+
   .project-img {
     border-radius: 20px 0 0 20px;
     width: 400px;
@@ -84,6 +114,7 @@
     @media (max-width: 660px) {
       width: 100%;
     }
+
     > h3 {
       font-family: 'Montserrat', sans-serif;
       padding-bottom: 25px;
@@ -96,6 +127,7 @@
     > p {
       padding-bottom: 10px;
     }
+
     .stack {
       display: flex;
       gap: 10px;
@@ -104,12 +136,15 @@
       @media (max-width: 900px) {
         flex-wrap: wrap;
       }
+
       p {
         font-size: 23px;
         font-weight: 600;
+
         &:first-child {
           color: $second-color;
         }
+
         @media (max-width: 1280px) {
           font-size: 20px;
         }
@@ -118,6 +153,7 @@
         }
       }
     }
+
     .links {
       position: absolute;
       bottom: 20px;
@@ -139,6 +175,7 @@
         @media (max-width: 900px) {
           font-size: 14px;
         }
+
         > svg {
           transition: .2s;
           @media (max-width: 900px) {
@@ -146,9 +183,11 @@
             height: 20px;
           }
         }
+
         .github path {
           transition: .2s;
         }
+
         &:hover {
           color: $second-color;
 

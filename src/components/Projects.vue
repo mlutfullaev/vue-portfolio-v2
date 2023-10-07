@@ -1,16 +1,24 @@
 <template>
   <section id="projects" ref="projects">
     <div class="container projects-inner">
-      <p class="section-name">/projects</p>
+      <p
+        v-motion
+        :initial="{ opacity: 0, x: -50 }"
+        :visible="{ opacity: 1, x: 0, transition: {duration: 400, delay: 100}}"
+        class="section-name">/projects</p>
       <div class="projects-top">
         <div class="filter">
           <button
-            v-for="item in filters"
+            v-motion
+            :initial="{ x: -40, opacity: 0 }"
+            :visible="{ x: 0, opacity: 1, transition: {duration: 350, delay: idx * 200}}"
+            :delay="400"
+            v-for="(item, idx) in filters"
             :key="item"
             @click="filter = item"
             class="btn"
             :class="filter === item ? 'active' : ''">
-            {{item}}
+            <span>{{item}}</span>
           </button>
         </div>
       </div>
