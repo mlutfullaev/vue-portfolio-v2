@@ -31,7 +31,7 @@
 
 <style lang="scss">
 #about {
-  background: #f1f1f1;
+  background: $grey;
 
   .about-inner {
     display: flex;

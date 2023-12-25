@@ -1,11 +1,10 @@
 <template>
   <header>
-    <div class="container header-inner">
       <router-link
-        :to="{path: '/', hash: '#main'}"
-        v-motion
-        :initial="{ opacity: 0, x: -20, }"
-        :enter="{ opacity: 1, x: 0, transition: {duration: 300, delay: 500}}"
+          :to="{path: '/', hash: '#main'}"
+          v-motion
+          :initial="{ opacity: 0, x: -20, }"
+          :enter="{ opacity: 1, x: 0, transition: {duration: 300, delay: 500}}"
       >m.lutfullaev</router-link>
       <ul class="nav">
         <li
@@ -50,8 +49,7 @@
           </router-link>
         </li>
       </ul>
-    </div>
-  </header>
+</header>
   <button @click="menuActive = !menuActive" :class="['burger-btn', {active: menuActive}]"><span></span></button>
   <div :class="{menu: true, active: menuActive}">
     <router-link @click="menuActive = false" :to="{path: '/', hash: '#main'}" >Main</router-link>
@@ -65,21 +63,23 @@
 @import '@/assets/variables';
 
 header {
-  padding: 30px 0;
+  padding: 20px 40px;
   background: #FFF;
-  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
   position: fixed;
   z-index: 2;
-  top: 0;
+  top: 20px;
   left: 0;
+  right: 0;
+  max-width: 1000px;
   width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20px;
 
-  .header-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    .nav {
+  .nav {
       list-style-type: none;
       display: flex;
       gap: 15px;
@@ -134,15 +134,14 @@ header {
           display: none;
         }
       }
-    }
+  }
 
-    a {
-      font-size: 17px;
-    }
+  a {
+    font-size: 17px;
+  }
 
-    & > a {
-      font-weight: 700;
-    }
+  & > a {
+    font-weight: 700;
   }
 }
 
@@ -206,7 +205,7 @@ header {
   position: fixed;
   height: 100vh;
   width: 100%;
-  background: rgba(255, 255, 255, .9);
+  background: #F2F2F6;
   z-index: 3;
   transition: .2s;
   display: flex;

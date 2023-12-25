@@ -90,16 +90,20 @@ export default {
 
     .filter {
       display: flex;
-      gap: 10px;
       flex-wrap: wrap;
+      width: max-content;
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+      border-radius: 20px;
+
       button {
-        background: #f1f1f1;
-        border-radius: 5px;
-        padding: 10px 30px;
+        background: transparent;
+        border-radius: 20px;
+        padding: 15px 50px;
         font-size: 18px;
         font-weight: 500;
         font-family: 'Montserrat', sans-serif;
         transition: .2s;
+        margin: 0;
 
         @media (max-width: 900px) {
           font-size: 16px;
