@@ -188,8 +188,6 @@ header {
   }
   @media (max-width: 768px) {
     max-width: 620px;
-    padding-left: 20px;
-    padding-right: 20px;
   }
   @media (max-width: 660px) {
     max-width: 460px;
@@ -206,7 +204,7 @@ header {
   padding: 12px 0;
   position: fixed;
   top: 35px;
-  right: 55px;
+  right: 75px;
   z-index: 4;
   transition: .3s;
 
@@ -229,17 +227,36 @@ header {
       border-radius: 4px;
       transition: all .2s ease-in-out;
     }
-
     &:before {
       top: -8px;
     }
-
     &:after {
       top: 8px;
     }
   }
   &.scrolled {
     top: 15px;
+
+    span {
+      height: 2.5px;
+
+      &:before {
+        height: 2.5px;
+        top: -6px;
+      }
+      &:after {
+        height: 2.5px;
+        top: 6px;
+      }
+    }
+    &.active span {
+      &:before {
+          transform: rotate(45deg) translate(2.5px, 6px);
+      }
+      &:after {
+        transform: rotate(-45deg) translate(2.5px, -6px);
+      }
+    }
   }
   &.active {
     span {
@@ -264,7 +281,7 @@ header {
   position: fixed;
   height: 100vh;
   width: 100%;
-  background: #F2F2F6;
+  background: #f1f1f1;
   z-index: 3;
   transition: .2s;
   display: flex;
