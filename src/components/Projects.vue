@@ -6,22 +6,6 @@
         :initial="{ opacity: 0, x: -50 }"
         :visible="{ opacity: 1, x: 0, transition: {duration: 400, delay: 100}}"
         class="section-name">/projects</p>
-      <div class="projects-top">
-        <div class="filter">
-          <button
-            v-motion
-            :initial="{ x: -40, opacity: 0 }"
-            :visible="{ x: 0, opacity: 1, transition: {duration: 350, delay: idx * 200}}"
-            :delay="400"
-            v-for="(item, idx) in filters"
-            :key="item"
-            @click="filter = item"
-            class="btn"
-            :class="filter === item ? 'active' : ''">
-            <span>{{item}}</span>
-          </button>
-        </div>
-      </div>
       <div class="projects-list">
         <ProjectCard v-for="project in projects" :project="project" :key="project.title" />
       </div>
@@ -81,40 +65,4 @@ export default {
 </script>
 
 <style lang="scss">
-#projects {
-
-  .projects-top {
-    padding: 10px 0 20px;
-    display: flex;
-    justify-content: space-between;
-
-    .filter {
-      display: flex;
-      flex-wrap: wrap;
-      width: max-content;
-      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
-      border-radius: 20px;
-
-      button {
-        background: transparent;
-        border-radius: 20px;
-        padding: 15px 50px;
-        font-size: 18px;
-        font-weight: 500;
-        font-family: 'Montserrat', sans-serif;
-        transition: .2s;
-        margin: 0;
-
-        @media (max-width: 900px) {
-          font-size: 16px;
-          padding: 8px 25px;
-        }
-        &.active {
-          background: #333;
-          color: #fff;
-        }
-      }
-    }
-  }
-}
 </style>

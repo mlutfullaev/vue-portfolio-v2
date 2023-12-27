@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header :class="{scrolled: scrolled}">
       <router-link
           :to="{path: '/', hash: '#main'}"
           v-motion
@@ -50,7 +50,12 @@
         </li>
       </ul>
 </header>
-  <button @click="menuActive = !menuActive" :class="['burger-btn', {active: menuActive}]"><span></span></button>
+  <button
+    @click="menuActive = !menuActive"
+    class="burger-btn"
+    :class="{active: menuActive, scrolled}">
+    <span></span>
+  </button>
   <div :class="{menu: true, active: menuActive}">
     <router-link @click="menuActive = false" :to="{path: '/', hash: '#main'}" >Main</router-link>
     <router-link @click="menuActive = false" :to="{path: '/', hash: '#about'}" >About</router-link>
@@ -59,89 +64,140 @@
   </div>
 </template>
 
+<script lang="ts" setup>
+import { ref, watch } from 'vue'
+
+const menuActive = ref(false)
+
+watch(menuActive, () => {
+  document.body.style.overflow = menuActive.value ? 'hidden' : 'visible'
+})
+
+const scrolled = ref(false)
+
+window.onscroll = () => {
+  console.log(window.scrollY)
+  scrolled.value = window.scrollY > 200
+}
+</script>
+
 <style lang="scss">
 @import '@/assets/variables';
 
 header {
   padding: 20px 40px;
-  background: #FFF;
+  background-color: #fbfbfb;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
   position: fixed;
   z-index: 2;
   top: 20px;
   left: 0;
   right: 0;
-  max-width: 1000px;
-  width: 100%;
   margin: 0 auto;
+  width: 100%;
+  max-width: 1000px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 20px;
+  border-radius: 15px;
+  transition: .3s;
 
+  &.scrolled {
+    top: 10px;
+    padding: 10px 40px;
+
+    a {
+      font-size: 13px;
+    }
+  }
   .nav {
-      list-style-type: none;
-      display: flex;
-      gap: 15px;
+    position: relative;
+    top: 2.3px;
+    list-style-type: none;
+    display: flex;
+    gap: 15px;
 
-      a {
-        padding-bottom: 2px;
-        overflow: hidden;
-        position: relative;
-        display: inline-block;
+    a {
+      padding-bottom: 2px;
+      overflow: hidden;
+      position: relative;
+      display: inline-block;
 
-        &::before, &::after {
-          content: '';
-          position: absolute;
-          width: 100%;
-          left: 0;
-        }
+      &::before, &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        left: 0;
+      }
+      &::before {
+        background-color: $second-color;
+        height: 2px;
+        bottom: 0;
+        transform-origin: 100% 50%;
+        transform: scaleX(0);
+        transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+      }
+      &::after {
+        content: attr(data-replace);
+        height: 100%;
+        top: 0;
+        transform-origin: 100% 50%;
+        transform: translate3d(200%, 0, 0);
+        transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+        color: #444;
+      }
+      &:hover {
         &::before {
-          background-color: $second-color;
-          height: 2px;
-          bottom: 0;
-          transform-origin: 100% 50%;
-          transform: scaleX(0);
-          transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+          transform-origin: 0 50%;
+          transform: scaleX(1);
         }
         &::after {
-          content: attr(data-replace);
-          height: 100%;
-          top: 0;
-          transform-origin: 100% 50%;
-          transform: translate3d(200%, 0, 0);
-          transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
-          color: #444;
-        }
-        &:hover {
-          &::before {
-            transform-origin: 0 50%;
-            transform: scaleX(1);
-          }
-          &::after {
-            transform: translate3d(0, 0, 0);
-          }
-          span {
-             transform: translate3d(-200%, 0, 0);
-          }
+          transform: translate3d(0, 0, 0);
         }
         span {
-          display: inline-block;
-          transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
-        }
-
-        @media (max-width:500px) {
-          display: none;
+           transform: translate3d(-200%, 0, 0);
         }
       }
-  }
+      span {
+        display: inline-block;
+        transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+      }
 
+      @media (max-width:500px) {
+        display: none;
+      }
+    }
+  }
   a {
-    font-size: 17px;
-  }
+    transition: .4s;
+    font-size: 16px;
 
+    @media (max-width: 660px) {
+      font-size: 15px;
+    }
+  }
   & > a {
     font-weight: 700;
+  }
+
+  @media (max-width: 1280px) {
+    max-width: 750px;
+  }
+  @media (max-width: 900px) {
+    max-width: 640px;
+  }
+  @media (max-width: 768px) {
+    max-width: 620px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  @media (max-width: 660px) {
+    max-width: 460px;
+  }
+  @media (max-width: 550px) {
+    margin: 0 40px;
+    width: auto;
+    max-width: 100%;
   }
 }
 
@@ -149,19 +205,16 @@ header {
   cursor: pointer;
   padding: 12px 0;
   position: fixed;
-  top: 25px;
-  right: 25px;
+  top: 35px;
+  right: 55px;
   z-index: 4;
-
-  @media (min-width: 501px) {
-    display: none;
-  }
+  transition: .3s;
 
   span {
     position: relative;
     display: block;
     width: 25px;
-    height: 4px;
+    height: 3px;
     background: #444;
     transition: all .2s ease-in-out;
     border-radius: 4px;
@@ -172,7 +225,7 @@ header {
       content: '';
       left: 0;
       width: 25px;
-      height: 4px;
+      height: 3px;
       border-radius: 4px;
       transition: all .2s ease-in-out;
     }
@@ -185,7 +238,9 @@ header {
       top: 8px;
     }
   }
-
+  &.scrolled {
+    top: 15px;
+  }
   &.active {
     span {
       background: transparent;
@@ -198,6 +253,10 @@ header {
         transform: rotate(-45deg) translate(5px, -6px);
       }
     }
+  }
+
+  @media (min-width: 501px) {
+    display: none;
   }
 }
 .menu {
@@ -228,17 +287,3 @@ header {
   }
 }
 </style>
-
-<script>
-export default {
-  name: 'Header',
-  data: () => ({
-    menuActive: false
-  }),
-  watch: {
-    menuActive () {
-      document.querySelector('body').style.overflow = this.menuActive ? 'hidden' : 'visible'
-    }
-  }
-}
-</script>

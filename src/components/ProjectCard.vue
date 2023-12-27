@@ -67,7 +67,7 @@
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
   background: #fff;
   display: flex;
-  border-radius: 20px;
+  border-radius: 15px;
   margin-bottom: 30px;
 
   @media (max-width: 660px) {
@@ -75,7 +75,7 @@
   }
 
   .project-img {
-    border-radius: 20px 0 0 20px;
+    border-radius: 15px 0 0 15px;
     width: 400px;
     height: 300px;
 
@@ -89,7 +89,7 @@
     @media (max-width: 660px) {
       width: 100%;
       height: 300px;
-      border-radius: 20px 20px 0 0;
+      border-radius: 15px 15px 0 0;
     }
     @media (max-width: 350px) {
       height: 230px;
