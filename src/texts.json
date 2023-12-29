@@ -1,0 +1,70 @@
+{
+  "mainTitle": {
+    "ru": "Front-End Разработчик",
+    "en": "Front-End Developer"
+  },
+  "mainSubtitle": {
+    "ru": "Привет, Я Мага Лутфуллаев. С 2020 года я работаю Front-End разработчиком.",
+    "en": "Hi, i’m Maga Lutfullaev. I’m working since 2020 as Front-End developer."
+  },
+  "headerMain": {
+    "ru": "главная",
+    "en": "main"
+  },
+  "headerAbout": {
+    "ru": "обо мне",
+    "en": "about"
+  },
+  "headerProjects": {
+    "ru": "работы",
+    "en": "projects"
+  },
+  "headerContacts": {
+    "ru": "контакты",
+    "en": "contacts"
+  },
+  "aboutTitle": {
+    "ru": "Я в Коде: Краткий Обзор",
+    "en": "Me in Code: A Quick Overview"
+  },
+  "stack": {
+    "ru": "Стек",
+    "en": "Stack"
+  },
+  "skills": {
+    "ru": "Скилы & Знания",
+    "en": "Skills & Knowledge"
+  },
+  "advanced": {
+    "ru": "Продвинутый",
+    "en": "Advanced"
+  },
+  "intermediate": {
+    "ru": "Средний",
+    "en": "Intermediate"
+  },
+  "softSkills": {
+    "ru": "Soft-Скилы",
+    "en": "Soft-Skills"
+  },
+  "languages": {
+    "ru": "Языки",
+    "en": "Languages"
+  },
+  "aboutDescription": {
+    "ru": "С двенадцати лет я увлекся программированием, и с тех пор превратился в профессионального фронтенд разработчика. Самоучка по натуре, я постоянно ищу новые знания в мире веб-технологий. Мои работы - это сочетание простоты, функциональности и стиля. Готов присоединиться к команде, где смогу применить свои навыки для создания интуитивно понятных и эффективных веб-приложений.",
+    "en": "Since the age of twelve, programming has been my passion, evolving into a career as a professional frontend developer. A self-taught learner at heart, I'm constantly exploring new knowledge in the realm of web technologies. My work is a blend of simplicity, functionality, and style. Eager to join a team where I can apply my skills to create intuitive and efficient web applications."
+  },
+  "aboutLanguages": {
+    "ru": "Английский (Средний), Русский (Продвинутый), Узбекский (Родной)",
+    "en": "English - B1, Russian - C1, Uzbek - Native"
+  },
+  "aboutSoftSkills": {
+    "ru": "Понимание ТЗ, Time Management, Работа командой, Решение проблем.",
+    "en": "Understanding of Technical Specifications, Time Management, Teamwork, Problem Solving."
+  },
+  "contactsTitle": {
+    "ru": "Давайте свяжемся!",
+    "en": "Let's Connect!"
+  }
+}

@@ -1,0 +1,44 @@
+[
+  {
+    "title": {
+      "ru": "CRM-система для расходов",
+      "en": "CRM-system for expenses"
+    },
+    "description": {
+      "ru": "Сделал crm-систему для управление расходами. Это был проект для практики. Реализовал Авторизацию, и базовый crud с использованием Firebase.",
+      "en": "Developed a CRM system for expense management as a practice project. Implemented user authentication and basic CRUD operations using Firebase."
+    },
+    "github": "https://github.com/mlutfullaev/vue-crm",
+    "demo": "https://vue-crm-mlutfullaev.vercel.app/",
+    "img": "vue-crm.png",
+    "stack": ["Vue", "Options API", "Authorization", "Firebase", "Materialize Css", "Validation", "Vuex"]
+  },
+  {
+    "title": {
+      "ru": "Админ панель для интернет магазина",
+      "en": "Admin Dashboard for Online Store"
+    },
+    "description": {
+      "ru": "Админ панель для управление сайтом. Можно добавлять/редактировать товары, услуги, отзывы, писать блоги. Админку сделал за 2 недели",
+      "en": "The admin panel for the website allows for the addition and editing of products, services, reviews, and the creation of blog posts. I developed this admin panel within two weeks."
+    },
+    "github": "",
+    "demo": "",
+    "img": "stones-admin.png",
+    "stack": ["React", "TypeScript", "Scss", "API"]
+  },
+  {
+    "title": {
+      "ru": "Интернет магазин по камням",
+      "en": "Online store for stones"
+    },
+    "description": {
+      "ru": "Разрабатывал магазин по продажам камня в течение месяца. В проект входил еще админ панель для управлении сайтом. Сделал фронтенд и админку, а Бекенд делал мой друг.",
+      "en": "Developed a stone sales e-commerce site over the course of a month. The project included an admin panel for site management. I handled the frontend and the admin panel, while my friend developed the backend."
+    },
+    "github": "",
+    "demo": "https://vkamne.com/",
+    "img": "stones.png",
+    "stack": ["React", "Redux Toolkit", "TypeScript", "Scss", "API"]
+  }
+]

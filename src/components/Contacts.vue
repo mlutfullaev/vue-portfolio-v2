@@ -6,13 +6,13 @@
         v-motion
         :initial="{ opacity: 0, x: -50 }"
         :visible="{ opacity: 1, x: 0, transition: {duration: 400, delay: 100}}"
-      >/contacts</p>
+      >/{{texts.headerContacts[store.state.lang]}}</p>
       <h2
         class="title"
         v-motion
         :initial="{ opacity: 0, y: -50 }"
         :visible="{ opacity: 1, y: 0, transition: {duration: 400, delay: 200}}"
-      >Давайте свяжемся!</h2>
+      >{{texts.contactsTitle[store.state.lang]}}</h2>
       <div class="contacts-inner">
         <div
           class="contacts-item"
@@ -37,7 +37,7 @@
             :initial="{ opacity: 0, y: -20 }"
             :visible="{ opacity: 1, y: 0, transition: {duration: 400, delay: 600}}">
             <p>Github</p>
-            <a target="_blank" href="https://github.com/magalutfullaev">@magalutfullaev</a>
+            <a target="_blank" href="https://github.com/mlutfullaev">@mlutfullaev</a>
           </div>
         </div>
         <div
@@ -61,7 +61,7 @@
             :initial="{ opacity: 0, y: -20 }"
             :visible="{ opacity: 1, y: 0, transition: {duration: 400, delay: 600}}">
             <p>Telegram</p>
-            <a target="_blank" href="https://t.me/magalutfullaev">@magalutfullaev</a>
+            <a target="_blank" href="https://t.me/mlutfullaev">@mlutfullaev</a>
           </div>
         </div>
         <div
@@ -97,7 +97,7 @@
             :initial="{ opacity: 0, y: -20 }"
             :visible="{ opacity: 1, y: 0, transition: {duration: 400, delay: 600}}">
             <p>Mail</p>
-            <a target="_blank" href="mailto:mlutfullaev1@gmail.com">mlutfullaev1@gmail.com</a>
+            <a target="_blank" href="mailto:mhoja9494@gmail.com">mhoja9494@gmail.com</a>
           </div>
         </div>
       </div>
@@ -171,5 +171,7 @@
   }
 }
 </style>
-<script setup>
+<script lang="ts" setup>
+import store from '@/store/index'
+import texts from '@/texts.json'
 </script>

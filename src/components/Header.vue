@@ -13,9 +13,9 @@
           :enter="{ opacity: 1, y: 0, transition: {duration: 300}}">
           <router-link
             :to="{path: '/', hash: '#main'}"
-            data-replace="main"
+            :data-replace="texts.headerMain[store.state.lang]"
           >
-            <span>main</span>
+            <span>{{texts.headerMain[store.state.lang]}}</span>
           </router-link>
         </li>
         <li
@@ -24,8 +24,8 @@
           :enter="{ opacity: 1, y: 0, transition: {duration: 300, delay: 100}}">
           <router-link
             :to="{path: '/', hash: '#about'}"
-            data-replace="about">
-            <span>about</span>
+            :data-replace="texts.headerAbout[store.state.lang]">
+            <span>{{texts.headerAbout[store.state.lang]}}</span>
           </router-link>
         </li>
         <li
@@ -34,8 +34,8 @@
           :enter="{ opacity: 1, y: 0, transition: {duration: 300, delay: 200}}">
           <router-link
             :to="{path: '/', hash: '#projects'}"
-            data-replace="projects">
-            <span>projects</span>
+            :data-replace="texts.headerProjects[store.state.lang]">
+            <span>{{texts.headerProjects[store.state.lang]}}</span>
           </router-link>
         </li>
         <li
@@ -44,9 +44,15 @@
           :enter="{ opacity: 1, y: 0, transition: {duration: 300, delay: 300}}">
           <router-link
             :to="{path: '/', hash: '#contacts'}"
-            data-replace="contacts">
-            <span>contacts</span>
+            :data-replace="texts.headerContacts[store.state.lang]">
+            <span> {{ texts.headerContacts[store.state.lang] }} </span>
           </router-link>
+        </li>
+        <li
+          v-motion
+          :initial="{ opacity: 0, y: -30 }"
+          :enter="{ opacity: 1, y: 0, transition: {duration: 300, delay: 350}}">
+          <lang-dropdown />
         </li>
       </ul>
 </header>
@@ -57,27 +63,27 @@
     <span></span>
   </button>
   <div :class="{menu: true, active: menuActive}">
-    <router-link @click="menuActive = false" :to="{path: '/', hash: '#main'}" >Main</router-link>
-    <router-link @click="menuActive = false" :to="{path: '/', hash: '#about'}" >About</router-link>
-    <router-link @click="menuActive = false" :to="{path: '/', hash: '#projects'}" >Projects</router-link>
-    <router-link @click="menuActive = false" :to="{path: '/', hash: '#contacts'}" >Contacts</router-link>
+    <router-link @click="menuActive = false" :to="{path: '/', hash: '#main'}" >{{ texts.headerMain[store.state.lang]}}</router-link>
+    <router-link @click="menuActive = false" :to="{path: '/', hash: '#about'}" >{{ texts.headerAbout[store.state.lang] }}</router-link>
+    <router-link @click="menuActive = false" :to="{path: '/', hash: '#projects'}" >{{ texts.headerProjects[store.state.lang] }}</router-link>
+    <router-link @click="menuActive = false" :to="{path: '/', hash: '#contacts'}" >{{ texts.headerContacts[store.state.lang] }}</router-link>
   </div>
 </template>
 
 <script lang="ts" setup>
+import texts from '@/texts.json'
+import store from '@/store/index'
 import { ref, watch } from 'vue'
+import LangDropdown from '@/components/LangDropdown.vue'
 
 const menuActive = ref(false)
-
 watch(menuActive, () => {
   document.body.style.overflow = menuActive.value ? 'hidden' : 'visible'
 })
 
 const scrolled = ref(false)
-
 window.onscroll = () => {
-  console.log(window.scrollY)
-  scrolled.value = window.scrollY > 200
+  scrolled.value = window.scrollY > 30
 }
 </script>
 
@@ -115,6 +121,7 @@ header {
     top: 2.3px;
     list-style-type: none;
     display: flex;
+    align-items: center;
     gap: 15px;
 
     a {
@@ -162,9 +169,15 @@ header {
         display: inline-block;
         transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
       }
-
+    }
+    > li {
       @media (max-width:500px) {
         display: none;
+
+        &:last-child {
+          display: block;
+          margin-right: 35px;
+        }
       }
     }
   }
@@ -193,7 +206,7 @@ header {
     max-width: 460px;
   }
   @media (max-width: 550px) {
-    margin: 0 40px;
+    margin: 0 20px;
     width: auto;
     max-width: 100%;
   }
@@ -204,7 +217,7 @@ header {
   padding: 12px 0;
   position: fixed;
   top: 35px;
-  right: 75px;
+  right: 55px;
   z-index: 4;
   transition: .3s;
 
