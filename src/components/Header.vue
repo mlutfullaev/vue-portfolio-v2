@@ -216,7 +216,7 @@ header {
   cursor: pointer;
   padding: 12px 0;
   position: fixed;
-  top: 35px;
+  top: 39px;
   right: 55px;
   z-index: 4;
   transition: .3s;
@@ -248,7 +248,7 @@ header {
     }
   }
   &.scrolled {
-    top: 15px;
+    top: 18px;
 
     span {
       height: 2.5px;
