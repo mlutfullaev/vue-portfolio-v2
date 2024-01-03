@@ -5,6 +5,8 @@ export default () => {
     let isTransitioning = false
     let additionalScrollCount = 0
     const additionalScrollThreshold = 5
+    let startY = 0
+    let endY = 0
 
     function switchPage (newPage: number): void {
       if (newPage < 0 || newPage >= totalPages || isTransitioning) return
@@ -25,16 +27,23 @@ export default () => {
       }, 1500)
     }
 
+    function isAtScrollEdge (): { atTop: boolean; atBottom: boolean } {
+      const scrollTop: number = window.pageYOffset || document.documentElement.scrollTop
+      const scrollHeight: number = document.documentElement.scrollHeight
+      const clientHeight: number = document.documentElement.clientHeight
+
+      const atBottom: boolean = scrollTop + clientHeight >= scrollHeight
+      const atTop: boolean = scrollTop <= 0
+
+      return { atTop, atBottom }
+    }
+
     window.addEventListener('wheel', (e: WheelEvent) => {
       if (isTransitioning) {
         return
       }
 
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop
-      const scrollHeight = document.documentElement.scrollHeight
-      const clientHeight = document.documentElement.clientHeight
-      const atBottom = scrollTop + clientHeight >= scrollHeight
-      const atTop = scrollTop <= 0
+      const { atTop, atBottom } = isAtScrollEdge()
 
       if (e.deltaY > 0) {
         if (atBottom) {
@@ -57,7 +66,37 @@ export default () => {
       }
       // eslint-disable-next-line
     }, { passive: false })
+    window.addEventListener('touchstart', handleTouchStart, { passive: false })
+    window.addEventListener('touchend', handleTouchEnd, { passive: false })
 
+    function handleTouchStart (e: TouchEvent): void {
+      startY = e.touches[0].clientY
+    }
+
+    function handleTouchEnd (e: TouchEvent): void {
+      endY = e.changedTouches[0].clientY
+      const { atTop, atBottom } = isAtScrollEdge()
+
+      if (startY > endY) {
+        if (atBottom) {
+          additionalScrollCount++
+        } else {
+          additionalScrollCount = 0
+        }
+        if (additionalScrollCount >= additionalScrollThreshold) {
+          switchPage(currentPage + 1)
+        }
+      } else if (startY < endY) {
+        if (atTop) {
+          additionalScrollCount++
+        } else {
+          additionalScrollCount = 0
+        }
+        if (additionalScrollCount >= additionalScrollThreshold) {
+          switchPage(currentPage - 1)
+        }
+      }
+    }
   }
 
   return { switchPages }
