@@ -10,7 +10,7 @@
     },
     "github": "https://github.com/mlutfullaev/vue-crm",
     "demo": "https://vue-crm-mlutfullaev.vercel.app/",
-    "img": "vue-crm.png",
+    "img": "vue-crm.webp",
     "stack": ["Vue", "Options API", "Authorization", "Firebase", "Materialize Css", "Validation", "Vuex"]
   },
   {
@@ -24,7 +24,7 @@
     },
     "github": "",
     "demo": "",
-    "img": "stones-admin.png",
+    "img": "stones-admin.webp",
     "stack": ["React", "TypeScript", "Scss", "API"]
   },
   {
@@ -38,7 +38,7 @@
     },
     "github": "",
     "demo": "https://vkamne.com/",
-    "img": "stones.png",
+    "img": "stones.webp",
     "stack": ["React", "Redux Toolkit", "TypeScript", "Scss", "API"]
   }
 ]

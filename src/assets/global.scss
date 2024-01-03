@@ -1,29 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;600;700;900&family=Montserrat:wght@400;500;700&display=swap');
-@import '@/assets/variables';
 @import '@/assets/fonts';
-
+html {
+  scroll-behavior: smooth;
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 body {
-  background-color: #fdfdfd;
+  background-color: $white;
   font-family: 'JetBrains Mono';
 
   &::-webkit-scrollbar {
-    width: 10px;
-  }
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: #666;
-    border-radius: 5px;
-    transition: .3s;
-  }
-  &::-webkit-scrollbar-thumb:hover {
-    background: #777;
+    display: none;
   }
 }
 
@@ -51,7 +41,7 @@ button {
   transition: .2s;
 }
 .container {
-  max-width: 1100px;
+  max-width: 1000px;
   padding-left: 50px;
   padding-right: 50px;
   margin: 0 auto;
@@ -120,5 +110,101 @@ button {
   }
   @media (max-width: 300px) {
     font-size: 15px;
+  }
+}
+
+.section {
+  .fade {
+    transition: .5s;
+    opacity: 1;
+    animation: fade 1.2s;
+  }
+  .fade-right {
+    transition: .5s;
+    transform: translateX(0);
+    opacity: 1;
+    animation: fade-right .8s;
+  }
+  .fade-left {
+    transition: .5s;
+    transform: translateX(0);
+    opacity: 1;
+    animation: fade-left .8s;
+  }
+  .fade-down {
+    transition: .3s;
+    transform: translateY(0);
+    opacity: 1;
+    animation: fade-down 1.2s;
+  }
+  &.animation {
+    &-enter-active {
+      transition: all 0.5s ease-out;
+    }
+
+    &-leave-active {
+      transition: all 0.5s ease-out;
+    }
+
+    &-enter-from,
+    &-leave-to {
+      opacity: 0;
+      transform: scale(1.05);
+
+      .fade {
+        opacity: 0;
+      }
+      .fade-right {
+        transform: translateX(-40px);
+        opacity: 0;
+      }
+      .fade-left {
+        transform: translateX(40px);
+        opacity: 0;
+      }
+      .fade-down {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+    }
+  }
+}
+
+@keyframes fade {
+  0%, 60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-right {
+  0%, 50% {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes fade-left {
+  0%, 50% {
+    transform: translateX(40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes fade-down {
+  0%, 50% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

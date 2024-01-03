@@ -1,15 +1,22 @@
 <template>
   <div class="project-card">
-    <div class="bg-img project-img">
-      <img :src="require('@/assets/img/projects/' + project.img)" alt="project-img">
+    <div class="bg-img project-img fade">
+      <div v-if="!loaded" class="preloader">
+        <img src="@/assets/img/spinner.svg" alt="preloader"/>
+      </div>
+      <img
+        :src="require('@/assets/img/projects/' + project.img)"
+        alt="project-img"
+        @click="modal = true"
+        @load="loaded = true"/>
     </div>
     <div class="card-item">
-      <h3 class="title">{{ project.title[store.state.lang] }}</h3>
-      <p class="text">{{ project.description[store.state.lang] }}</p>
-      <p class="stack">
+      <h3 class="title fade-right">{{ project.title[store.state.lang] }}</h3>
+      <p class="text fade-down">{{ project.description[store.state.lang] }}</p>
+      <p class="stack fade-right">
         <span>{{texts.stack[store.state.lang]}}: </span>{{ project.stack.join(', ') }}
       </p>
-      <div class="links">
+      <div class="links fade-down">
         <a
           target="_blank"
           :class="{disabled: !project.demo}"
@@ -33,12 +40,23 @@
       </div>
     </div>
   </div>
+
+  <Transition name="animation">
+    <div
+      @click="modal = false"
+      class="modal"
+      v-if="modal">
+      <div @click.stop class="modal-content">
+        <img :src="require('@/assets/img/projects/' + project.img)" alt="project-img"/>
+      </div>
+    </div>
+  </Transition>
 </template>
 
 <script lang="ts" setup>
 import store from '@/store/index'
 import texts from '@/texts.json'
-import { defineProps } from 'vue'
+import { defineProps, ref, watch } from 'vue'
 
 type Languages = {
   en: string,
@@ -54,71 +72,69 @@ interface Project {
 }
 
 defineProps<{project: Project}>()
+
+const loaded = ref(false)
+const modal = ref(false)
+
+watch(modal, () => {
+  document.body.style.overflow = modal.value ? 'hidden' : ''
+})
 </script>
 
 <style lang="scss">
 .project-card {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+  overflow: hidden;
   background: #fff;
-  display: flex;
+  display: grid;
+  grid-template-columns: 400px 1fr;
   border-radius: 15px;
   margin-bottom: 30px;
 
+  @media (max-width: 1280px) {
+    grid-template-columns: 300px 1fr;
+  }
   @media (max-width: 660px) {
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    grid-template-rows: 300px auto;
   }
 
   .project-img {
     overflow: hidden;
+    position: relative;
     border-radius: 15px 0 0 15px;
-    width: 400px;
-    height: 300px;
 
-    img {
+    .preloader {
+      height: 100%;
+      background: #fff;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 50px;
+      }
+    }
+    > img {
+      cursor: pointer;
       object-fit: cover;
+      position: absolute;
       overflow: hidden;
       transition: transform 1s linear;
       width: 100%;
     }
-    &:hover img {
+    &:hover > img {
       transform: translateY(calc(-100% + 300px));
       transition: transform 2.5s linear;
-    }
-
-    @media (max-width: 1280px) {
-      width: 340px;
-      height: auto;
-    }
-    @media (max-width: 900px) {
-      width: 300px;
-    }
-    @media (max-width: 660px) {
-      width: 100%;
-      height: 300px;
-      border-radius: 15px 15px 0 0;
-    }
-    @media (max-width: 350px) {
-      height: 230px;
-    }
-    @media (max-width: 300px) {
-      height: 200px;
     }
   }
   .card-item {
     padding: 20px 30px 60px;
     position: relative;
-    width: calc(100% - 400px);
-
-    @media (max-width: 1280px) {
-      width: calc(100% - 340px);
-    }
-    @media (max-width: 900px) {
-      width: calc(100% - 300px);
-      padding: 20px 20px 45px;
-    }
-    @media (max-width: 660px) {
-      width: 100%;
-    }
 
     h3 {
       font-family: 'Montserrat', sans-serif;
@@ -185,6 +201,33 @@ defineProps<{project: Project}>()
           transition: .2s;
         }
       }
+    }
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+
+  &-content {
+    width: 80%;
+    max-height: 80vh;
+    overflow-y: auto;
+
+    img {
+      height: 100%;
+      width: 100%;
+    }
+    @media (max-width: 660px) {
+      width: 90%
     }
   }
 }

@@ -15,3 +15,9 @@ import texts from '@/texts.json'
 import ProjectCard from '@/components/ProjectCard.vue'
 import projects from '@/projects.json'
 </script>
+
+<style lang="scss">
+#projects {
+  padding: 120px 0;
+}
+</style>
