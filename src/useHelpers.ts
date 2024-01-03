@@ -73,28 +73,19 @@ export default () => {
       startY = e.touches[0].clientY
     }
 
-    function handleTouchEnd (e: TouchEvent): void {
-      endY = e.changedTouches[0].clientY
-      const { atTop, atBottom } = isAtScrollEdge()
+    function handleTouchEnd(e: TouchEvent): void {
+      if (isTransitioning) {
+        e.preventDefault();
+        return;
+      }
 
-      if (startY > endY) {
-        if (atBottom) {
-          additionalScrollCount++
-        } else {
-          additionalScrollCount = 0
-        }
-        if (additionalScrollCount >= additionalScrollThreshold) {
-          switchPage(currentPage + 1)
-        }
-      } else if (startY < endY) {
-        if (atTop) {
-          additionalScrollCount++
-        } else {
-          additionalScrollCount = 0
-        }
-        if (additionalScrollCount >= additionalScrollThreshold) {
-          switchPage(currentPage - 1)
-        }
+      endY = e.changedTouches[0].clientY;
+      const { atTop, atBottom } = isAtScrollEdge();
+
+      if (startY > endY && atBottom) {
+        switchPage(currentPage + 1);
+      } else if (startY < endY && atTop) {
+        switchPage(currentPage - 1);
       }
     }
   }
