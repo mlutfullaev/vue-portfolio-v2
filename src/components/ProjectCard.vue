@@ -2,7 +2,7 @@
   <div class="project-card">
     <div class="bg-img project-img fade">
       <div v-if="!loaded" class="preloader">
-        <img src="@/assets/img/spinner.svg" alt="preloader"/>
+        <img src="../assets/img/spinner.svg" alt="preloader"/>
       </div>
       <img
         :src="require('@/assets/img/projects/' + project.img)"
@@ -54,7 +54,7 @@
 </template>
 
 <script lang="ts" setup>
-import store from '@/store/index'
+import store from '@/store'
 import texts from '@/texts.json'
 import { defineProps, ref, watch } from 'vue'
 

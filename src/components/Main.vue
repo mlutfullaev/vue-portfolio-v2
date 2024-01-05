@@ -64,7 +64,7 @@
 
 <script lang="ts" setup>
 import texts from '@/texts.json'
-import store from '@/store/index'
+import store from '@/store'
 </script>
 
 <style lang="scss">

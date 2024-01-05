@@ -23,7 +23,7 @@
 </template>
 
 <script lang="ts" setup>
-import store from '@/store/index'
+import store from '@/store'
 import { ref } from 'vue'
 
 const isOptionsExpanded = ref(false)

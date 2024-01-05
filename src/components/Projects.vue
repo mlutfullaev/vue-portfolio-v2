@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts" setup>
-import store from '@/store/index'
+import store from '@/store'
 import texts from '@/texts.json'
 import ProjectCard from '@/components/ProjectCard.vue'
 import projects from '@/projects.json'

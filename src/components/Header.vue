@@ -72,7 +72,7 @@
 
 <script lang="ts" setup>
 import texts from '@/texts.json'
-import store from '@/store/index'
+import store from '@/store'
 import { ref, watch } from 'vue'
 import LangDropdown from '@/components/LangDropdown.vue'
 
